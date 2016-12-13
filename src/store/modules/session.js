@@ -9,7 +9,8 @@ const state = {
     context_id: null,
     loggingIn: false,
     form_username: '',
-    form_password: ''
+    form_password: '',
+    form_error: ''
 };
 
 const mutations = {
@@ -42,10 +43,15 @@ const mutations = {
         }
     },
 
-    [types.SESSION_LOGIN_FAILURE] () {
+    [types.SESSION_LOGIN_FAILURE] (state, err) {
         if (state.loggingIn) {
             state.loggingIn = false;
         }
+        state.form_error = err;
+    },
+
+    [types.SESSION_LOGIN_RESET_ERROR] (state) {
+        state.form_error = false;
     },
 
     [types.SESSION_LOGOUT] (state) {
@@ -72,7 +78,7 @@ const actions = {
             throw err;
         });
     }
-
+    
 }
 
 const getters = {
@@ -80,7 +86,8 @@ const getters = {
         return state.user_id !== null;
     },
     form_username: state => state.form_username,
-    form_password: state => state.form_password
+    form_password: state => state.form_password.actions,
+    form_error: state => state.form_error,
 }
 
 export default {

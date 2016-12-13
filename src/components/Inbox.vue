@@ -1,5 +1,6 @@
 <template>
-    <div id="inbox">
+  <div id="inbox" v-on:click="hideMail">
+    
         <md-toolbar>
         
           <md-button class="md-icon-button" @click="toggleLeftSidenav">
@@ -15,6 +16,10 @@
             <avatar :uid="uid"></avatar>
           </md-avatar>
         </md-toolbar>
+        
+        <md-sidenav class="md-left folders-list" ref="leftSidenav">
+          <mail-folders></mail-folders>
+        </md-sidenav>
 
         <div id="mails-list" v-on:click="hideMail">
           <md-list class="custom-list md-triple-line">
@@ -60,10 +65,6 @@
           </md-list>
         </div>
 
-        <md-sidenav class="md-left folders-list" ref="leftSidenav">
-          <mail-folders></mail-folders>
-        </md-sidenav>
-
         <md-button class="md-fab md-primary compose-button">
           <md-icon>edit</md-icon>
           <md-tooltip md-direction="top">Compose Email</md-tooltip>
@@ -75,9 +76,8 @@
 
 import Vue from 'vue';
 import { mapState } from 'vuex';
-import Avatar from './Avatar';
+import Avatar from './tk/Avatar';
 import moment from 'moment';
-
 
 Vue.component('avatar', Avatar);
 
@@ -115,15 +115,13 @@ export default {
 
 </script>
 
-<style lang="scss">
-  
-    .folders-list>div {
-      
-      background: #eee;
-    }
+<style lang="scss" scoped>
 
+    @import '../assets/sass/definitions';
+
+   
     .md-toolbar {
-      background: #3774A8;
+      background: $brand-primary;
       color: white;
       position:fixed;
       top:0;
@@ -153,7 +151,6 @@ export default {
     #mails-list {
       width: 80%;
       margin: 64px auto 10px;
-      
     }
 
     #mails-list div.md-avatar {

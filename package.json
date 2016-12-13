@@ -1,6 +1,6 @@
 {
   "name": "oxinbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple, lightweight OX client.",
   "author": "Matt Curtis <matt.curtis@open-xchange.com>",
   "private": true,
@@ -12,7 +12,8 @@
   "dependencies": {
     "moment": "^2.15.2",
     "vue": "^2.0.1",
-    "vue-material": "^0.2.0",
+    "vue-i18n": "^4.7.4",
+    "vue-material": "^0.4.1",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",
@@ -23,6 +24,7 @@
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.0.0",
+    "babel-plugin-component": "^0.6.0",
     "babel-plugin-transform-runtime": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-stage-2": "^6.0.0",
@@ -46,6 +48,7 @@
     "ora": "^0.3.0",
     "sass-loader": "^4.0.2",
     "shelljs": "^0.7.4",
+    "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-loader": "^9.4.0",
     "vue-style-loader": "^1.0.0",

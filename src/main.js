@@ -1,9 +1,13 @@
 import Vue from 'vue';
-// import App from './App';
 import VueRouter from 'vue-router';
-import VueMaterial from 'vue-material'
+import VueMaterial from 'vue-material';
+import I18n from 'vue-I18n';
+
 import store from './store';
-import 'vue-material/dist/vue-material.css'
+import locales from './i18n/locales';
+
+import 'vue-material/dist/vue-material.css';
+import './assets/sass/base.scss';
 
 import Login from './components/Login';
 import Inbox from './components/Inbox';
@@ -11,6 +15,10 @@ import MailFolders from './components/MailFolders';
 
 Vue.use(VueMaterial);
 Vue.use(VueRouter);
+Vue.use(I18n);
+
+Vue.config.lang = 'en_US';
+Vue.config.fallbackLang = 'en_US';
 
 Vue.component('mail-folders', MailFolders);
 
@@ -31,6 +39,11 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+// set locales
+Object.keys(locales).forEach(function (lang) {
+  Vue.locale(lang, locales[lang])
+})
 
 new Vue({
   store,

@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <div class="mailfolders">
         <md-list class="md-dense">
             <md-list-item v-for="folder in folders">
-                <md-icon>{{ folder.icon }}</md-icon> {{ folder.text }}
+                <md-icon>{{ folder.icon }}</md-icon>
+                <span>{{ folder.text }}</span>
             </md-list-item>
         </md-list>
         <md-divider class="md-inset"></md-divider>
@@ -14,6 +15,7 @@
             <md-list-item>
                 <md-icon class="md-primary">event</md-icon>
                 <span>Calendar</span>
+            </md-list-item>
         </md-list>    
     </div>
 </template>
