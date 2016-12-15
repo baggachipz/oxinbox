@@ -1,6 +1,6 @@
 <template>
     <transition name="slide-fade">
-        <div v-if="message" :class="type">
+        <div class="inline-error" v-if="message" :class="type">
             <md-icon>{{ type }}</md-icon><div class="msg">{{ message }}</div>
         </div>
     </transition>

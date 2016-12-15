@@ -14,6 +14,14 @@ import Inbox from './components/Inbox';
 import MailFolders from './components/MailFolders';
 
 Vue.use(VueMaterial);
+
+Vue.material.theme.register('ox', {
+  primary: 'blue',
+  accent: 'pink',
+  warn: 'deep-orange',
+  background: 'grey'
+});
+
 Vue.use(VueRouter);
 Vue.use(I18n);
 
@@ -32,9 +40,15 @@ const router = new VueRouter({routes, mode: 'history'});
 
 router.beforeEach((to, from, next) => {
   if (to.path !== '/login' && !store.getters.loggedIn) {
-    next({
-      name: 'login'
+
+    store.dispatch('autologin').then(() => {
+      next();
+    }).catch(() => {
+      next({
+        name: 'login'
+      });
     });
+
   } else {
     next();
   }

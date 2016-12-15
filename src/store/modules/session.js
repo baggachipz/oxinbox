@@ -10,6 +10,7 @@ const state = {
     loggingIn: false,
     form_username: '',
     form_password: '',
+    form_rememberme: false,
     form_error: ''
 };
 
@@ -21,6 +22,10 @@ const mutations = {
 
     [types.SESSION_LOGIN_FORM_SET_PASSWORD] (state, val) {
         state.form_password = val;
+    },
+
+    [types.SESSION_LOGIN_FORM_SET_REMEMBERME] (state, val) {
+        state.form_rememberme = !!val;
     },
 
     [types.SESSION_LOGIN_RESET_FORM] (state) {
@@ -77,8 +82,21 @@ const actions = {
             commit(types.SESSION_LOGIN_FAILURE, err);
             throw err;
         });
+    },
+    autologin: ({commit}) => {
+
+        return sessionApi.autologin().then(function(data) {
+            commit(types.SESSION_LOGIN_REQUEST);
+            commit(types.SESSION_LOGIN_SUCCESS, data);  
+        });
+
+    },
+    logout: ({commit, state}) => {
+        return sessionApi.logout(state.session).then(function() {
+            commit(types.SESSION_LOGOUT);
+        });
     }
-    
+
 }
 
 const getters = {
@@ -86,7 +104,8 @@ const getters = {
         return state.user_id !== null;
     },
     form_username: state => state.form_username,
-    form_password: state => state.form_password.actions,
+    form_password: state => state.form_password,
+    form_rememberme: state => state.form_rememberme,
     form_error: state => state.form_error,
 }
 

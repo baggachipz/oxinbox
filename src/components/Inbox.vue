@@ -3,18 +3,26 @@
     
         <md-toolbar>
         
-          <md-button class="md-icon-button" @click="toggleLeftSidenav">
-            <md-icon>menu</md-icon>
-          </md-button>
-          <h2 class="md-title"><em>inb</em>OX</h2>
+          <div id="top-menu-launcher">
+            <md-button class="md-icon-button" @click="toggleLeftSidenav">
+              <md-icon>menu</md-icon>
+            </md-button>
+            <h2 class="md-title"><img id="logo-top" src="/static/logo-white.png"></h2>
+          </div>
         
-          <form class="search-form" novalidate>
+          <form id="top-menu-search" class="search-form" novalidate>
             <input type="text" placeholder="Search">
           </form>
 
-          <md-avatar>
-            <avatar :uid="uid"></avatar>
-          </md-avatar>
+          <md-menu id="top-menu-user">
+            <md-button md-menu-trigger>
+              <avatar :uid="uid"></avatar>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item v-on:click="logout"><md-icon>power_settings_new</md-icon><span>Log out</span></md-menu-item>
+              <md-menu-item disabled><md-icon>settings</md-icon><span>Settings</span></md-menu-item>
+            </md-menu-content>
+          </md-menu>
         </md-toolbar>
         
         <md-sidenav class="md-left folders-list" ref="leftSidenav">
@@ -95,10 +103,16 @@ export default {
     },
     hideMail() {
       this.$store.dispatch('hideAllMail');
+    },
+    logout() {
+      this.$store.dispatch('logout').then(() => {
+        window.location.href = '/login';
+      });
     }
   },
   computed: mapState({
     uid: state => state.session.user_id,
+    username: state => state.session.user,
     mails: state => state.mail.mails,
     mail: state => state.mail.mail
   }),
@@ -126,12 +140,20 @@ export default {
       position:fixed;
       top:0;
       width:100%;
-      z-index:2
+      z-index:2;
+      justify-content: space-between;
+
+      h2 {
+        float: right;
+        margin-top: 5px;
+      }
     }
 
     .search-form {
       display: block;
-      width: 70%;
+      flex-grow: 1;
+
+      /*width: 90%;*/
       text-align: center;
       margin-right: 100px;
     }
@@ -142,7 +164,7 @@ export default {
       width: 100%;
       border-radius: 2px;
       line-height: 25px;
-      margin-left: 100px;
+      margin-left: 30px;
       padding: 5px 40px;
       font-size: 16px;
       background: #428BCA url('data:image/svg+xml;utf-8,<svg fill="%23aaaaaa" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat 5px 50%; 

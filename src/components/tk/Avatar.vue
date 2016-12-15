@@ -1,10 +1,7 @@
 <template>
-    {{ uid }}
-    {{ uname }}
     <md-avatar>
         <img class="avatar" :src="avatar">
     </md-avatar>
-    
 </template>
 
 <script>
