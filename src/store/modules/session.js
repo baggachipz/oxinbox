@@ -56,7 +56,7 @@ const mutations = {
     },
 
     [types.SESSION_LOGIN_RESET_ERROR] (state) {
-        state.form_error = false;
+        state.form_error = '';
     },
 
     [types.SESSION_LOGOUT] (state) {

@@ -6,7 +6,7 @@
             <md-card class="login-box">
                 <md-card-header>
                     <md-card-header-text>
-                        <div class="md-title login-title"><img src="/static/logo.png" alt="inbOX by Open-Xchange"></div>
+                        <div class="md-title login-title"><img src="/static/logo-blue.png" alt="inbOX by Open-Xchange"></div>
                     </md-card-header-text>
                     <div class="login-error"><inline-alert type="error" :message="loginError"></inline-alert></div>
                 </md-card-header>
