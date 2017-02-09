@@ -21,5 +21,6 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## Product Roadmap
 Basic product: Mail, Contacts, Calendar (lite)
-Mail: Smart search using lunr.js and saving index to user settings for portability, storing locally (encrypted) for fast pre-loading
+Mail: Drag/drop attachments using http://vueclip.adonisjs.com/
+Mail: Smart search using lunr.js and saving index to user settings for portability, storing locally (encrypted with WebCrypto?) with indexedDB for fast pre-loading
 Mail: Smart reply-all which warns user when recipient list is > a threshold or includes a mailing list

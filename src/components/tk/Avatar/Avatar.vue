@@ -1,12 +1,17 @@
 <template>
     <md-avatar>
-        <img class="avatar" :src="avatar">
-    </md-avatar>
+        <img class="ox-avatar" :src="avatar">
+    <md-avatar>
 </template>
 
 <script>
+
+    // import Vue from 'vue';
+    import VueMaterial from 'vue-material';
+    // Vue.use(VueMaterial.mdAvatar);
+
     export default {
-        name: 'avatar',
+        name: 'ox-avatar',
         props: ['uid', 'uname'],
         computed: {
             avatar: function() {
@@ -19,7 +24,8 @@
                 }
 
             }
-        }
+        },
+        components: VueMaterial.mdAvatar
     }
 </script>
 

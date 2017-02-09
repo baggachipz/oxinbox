@@ -1,5 +1,5 @@
 <template>
-    <div class="mailfolders">
+    <div>
         <md-list class="md-dense">
             <md-list-item v-for="folder in folders">
                 <md-icon>{{ folder.icon }}</md-icon>
@@ -23,7 +23,7 @@
 <script>
 
 export default {
-    name: 'mail-folders',
+    id: 'mail-folders',
     data: function () { 
         return {
             folders: [
@@ -58,7 +58,7 @@ export default {
 
 </script>
 
-<style type="scss">
+<style lang="scss" scoped>
     
     
 </style>

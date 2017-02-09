@@ -21,6 +21,7 @@ module.exports = {
     port: 8080,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    autoOpenBrowser: true,
     proxyTable: {
       '/ajax/**': {
         target: 'https://appsuite-dev.open-xchange.com',

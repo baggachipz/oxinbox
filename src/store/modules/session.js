@@ -8,6 +8,7 @@ const state = {
     locale: null,
     context_id: null,
     loggingIn: false,
+    loggedIn: false,
     form_username: '',
     form_password: '',
     form_rememberme: false,
@@ -100,9 +101,7 @@ const actions = {
 }
 
 const getters = {
-    loggedIn: state => {
-        return state.user_id !== null;
-    },
+    loggedIn: state => state.user_id !== null,
     form_username: state => state.form_username,
     form_password: state => state.form_password,
     form_rememberme: state => state.form_rememberme,

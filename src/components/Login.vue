@@ -8,7 +8,7 @@
                     <md-card-header-text>
                         <div class="md-title login-title"><img src="/static/logo-blue.png" alt="inbOX by Open-Xchange"></div>
                     </md-card-header-text>
-                    <div class="login-error"><inline-alert type="error" :message="loginError"></inline-alert></div>
+                    <div class="login-error"><ox-inline-alert type="error" :message="loginError"></ox-inline-alert></div>
                 </md-card-header>
                 
                 <md-card-content>
@@ -40,7 +40,7 @@ import * as types from '../store/mutation-types';
 import InlineAlert from './tk/InlineAlert'
 import { mapState } from 'vuex';
 
-Vue.component('inline-alert', InlineAlert);
+Vue.use(InlineAlert);
 
 export default {
   name: 'login',
