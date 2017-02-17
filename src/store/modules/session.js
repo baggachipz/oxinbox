@@ -53,7 +53,7 @@ const mutations = {
         if (state.loggingIn) {
             state.loggingIn = false;
         }
-        state.form_error = err;
+        state.form_error = err.msg;
     },
 
     [types.SESSION_LOGIN_RESET_ERROR] (state) {
@@ -71,12 +71,12 @@ const mutations = {
 }
 
 const actions = {
-    login: ({commit}, credentials) => {
+    login: ({commit}, payload) => {
     
         // mark that request is being made
         commit(types.SESSION_LOGIN_REQUEST);
 
-        return sessionApi.login(credentials).then(function (data) {
+        return sessionApi.login(payload.username, payload.password, payload.rememberme).then(function (data) {
             commit(types.SESSION_LOGIN_SUCCESS, data);
             commit(types.SESSION_LOGIN_RESET_FORM);
         }).catch(function (err) {
@@ -93,9 +93,11 @@ const actions = {
 
     },
     logout: ({commit, state}) => {
+
         return sessionApi.logout(state.session).then(function() {
             commit(types.SESSION_LOGOUT);
         });
+
     }
 
 }

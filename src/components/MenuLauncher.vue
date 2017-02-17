@@ -1,6 +1,6 @@
 <template>
     <div class="top-menu-launcher">
-        <md-button class="md-icon-button" @click="toggleLeftSidenav">
+        <md-button type="button" class="icon-button" @click="toggleLeftSidenav">
             <md-icon>menu</md-icon>
         </md-button>
         <h2 class="md-title">inbOX</h2>
@@ -8,11 +8,9 @@
 </template>
 
 <script>
+
     export default {
         name: 'menu-launcher',
-        props: [
-            'sideNav'
-        ],
         methods: {
             toggleLeftSidenav() {
                 this.$emit('toggleLeftSidenav');

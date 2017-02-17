@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueMaterial from 'vue-material';
 import I18n from 'vue-I18n';
+import tk from './components/tk';
 
 import store from './store';
 import router from './router';
@@ -14,6 +15,7 @@ import './assets/sass/base.scss';
 
 
 Vue.use(VueMaterial);
+Vue.use(tk);
 Vue.material.registerTheme('ox', {
   primary: 'blue',
   accent: 'pink',

@@ -1,13 +1,9 @@
 <template>
   <div id="inbox" v-on:click="hideMail">
-    
-        
         
         <ox-mail-list ref="mailsList"></ox-mails-list>
         
-        
-
-        <md-button class="md-fab md-primary compose-button">
+        <md-button class="md-fab md-primary md-fab-bottom-right compose-button">
           <md-icon>edit</md-icon>
           <md-tooltip md-direction="top">Compose Email</md-tooltip>
         </md-button>
@@ -17,12 +13,12 @@
 <script>
 
 import Vue from 'vue';
-
-// import Sidenav from './tk/Sidenav'
 import MailList from './MailList';
 
 
 Vue.component('ox-mail-list', MailList);
+
+
 
 export default {
   name: 'inbox',

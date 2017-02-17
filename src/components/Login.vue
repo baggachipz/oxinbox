@@ -35,12 +35,8 @@
 
 <script>
 
-import Vue from 'vue';
 import * as types from '../store/mutation-types';
-import InlineAlert from './tk/InlineAlert'
 import { mapState } from 'vuex';
-
-Vue.use(InlineAlert);
 
 export default {
   name: 'login',

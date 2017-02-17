@@ -1,14 +1,12 @@
 <template>
     <md-avatar>
-        <img class="ox-avatar" :src="avatar">
+        <img class="md-avatar" :src="avatar">
     <md-avatar>
 </template>
 
 <script>
 
-    // import Vue from 'vue';
     import VueMaterial from 'vue-material';
-    // Vue.use(VueMaterial.mdAvatar);
 
     export default {
         name: 'ox-avatar',

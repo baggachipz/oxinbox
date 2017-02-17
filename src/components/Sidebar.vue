@@ -1,15 +1,41 @@
 <template>
-    <ox-sidenav class="folders-list" ref="sidenav">
-asf
-    </ox-sidenav>
+    <md-sidenav class="folders-list md-left md-fixed" ref="sidenav">
+        
+        <md-list>
+
+            <md-list-item ref="mailFoldersList">
+                <md-icon class="md-primary">markunread_mailbox</md-icon>
+                <span>Email</span>
+            </md-list-item>
+
+            <mail-folders v-if="currentApp === 'inbox'"></mail-folders>
+
+            <md-divider></md-divider>
+            
+            <md-list-item>    
+                <md-icon class="md-primary">contacts</md-icon>
+                <span>Contacts</span>
+            </md-list-item>
+            
+            <md-divider></md-divider>
+            
+            <md-list-item>
+                <md-icon class="md-primary">event</md-icon>
+                <span>Calendar</span>
+            </md-list-item>
+
+        </md-list>  
+
+    </md-sidenav>
 </template>
 
 <script>
 
     import Vue from 'vue';
-    import Sidenav from './tk/Sidenav';
+    import { mapState } from 'vuex';
+    import MailFolders from './MailFolders';
 
-    Vue.use(Sidenav);
+    Vue.component('mail-folders', MailFolders);
 
     export default {
         name: 'ox-sidebar',
@@ -18,7 +44,10 @@ asf
             toggle () {
                 this.$refs.sidenav.toggle();
             }
-        }
+        },
+        computed: mapState({
+            currentApp: state => state.app.currentApp
+        })
     }
 
 </script>

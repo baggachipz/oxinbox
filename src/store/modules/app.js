@@ -38,6 +38,5 @@ export default {
     state,
     mutations,
     getters,
-    actions,
-    APP_TYPES
+    actions
 }

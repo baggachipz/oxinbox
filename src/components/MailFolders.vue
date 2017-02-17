@@ -1,59 +1,43 @@
 <template>
-    <div>
-        <md-list class="md-dense">
-            <md-list-item v-for="folder in folders">
-                <md-icon>{{ folder.icon }}</md-icon>
-                <span>{{ folder.text }}</span>
-            </md-list-item>
-        </md-list>
-        <md-divider class="md-inset"></md-divider>
-        <md-list>
-            <md-list-item>
-                <md-icon class="md-primary">contacts</md-icon>
-                <span>Contacts</span>
-            </md-list-item>
-            <md-list-item>
-                <md-icon class="md-primary">event</md-icon>
-                <span>Calendar</span>
-            </md-list-item>
-        </md-list>    
-    </div>
+    
+    <md-list class="md-dense">
+        <md-list-item>
+            <ox-folder-icon :folder="inbox"></ox-folder-icon>
+            <span>{{ inbox.title }}</span>
+        </md-list-item>
+        <md-list-item v-for="folder in inbox.sub_folders">
+            <ox-folder-icon :folder="folder"></ox-folder-icon>
+            <span>{{ folder.title }}</span>
+        </md-list-item>
+    </md-list>  
+    
 </template>
 
 <script>
 
+// import { mapState } from 'vuex';
+
 export default {
     id: 'mail-folders',
-    data: function () { 
-        return {
-            folders: [
-                {
-                    text: 'Inbox',
-                    icon: 'inbox'
-                },
-                {
-                    text: 'Drafts',
-                    icon: 'drafts'
-                },
-                {
-                    text: 'Sent objects',
-                    icon: 'mail'
-                },
-                {
-                    text: 'Spam',
-                    icon: 'report'
-                },
-                {
-                    text: 'Trash',
-                    icon: 'delete'
-                },
-                {
-                    text: 'Archive',
-                    icon: 'archive'
-                }
-            ]
+    methods: {
+        getFolders () {
+            this.$store.dispatch('getDefaultMailFolders');
         }
-    }
+    },
+    computed: {
+        inbox () {
+            let folders = this.$store.state.mail.folders;
+            
+            if (folders.length && folders[0].sub_folders.length) {
+                return folders[0].sub_folders[0];
+            } else {
+                return [];
+            }
+        }
+    },
+    mounted() {
+        this.getFolders();
+    } 
 }
 
 </script>

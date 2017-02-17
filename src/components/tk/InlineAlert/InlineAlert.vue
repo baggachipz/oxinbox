@@ -1,24 +1,22 @@
 <template>
     <transition name="slide-fade">
         <div class="inline-error" v-if="message" :class="type">
-            <ox-icon>{{ type }}</ox-icon><div class="msg">{{ message }}</div>
+            <md-icon>{{ type }}</md-icon><div class="msg">{{ message }}</div>
         </div>
     </transition>
 </template>
 
 <script>
 
-    import Vue from 'vue';
-    import Icon from '../Icon';
+    import VueMaterial from 'vue-material';
     
-    Vue.use(Icon);
-
     export default {
         name: 'ox-inline-alert',
         props: {
             type: String,
             message: String
-        }
+        },
+        components: VueMaterial.mdIcon
     }
 </script>
 
