@@ -30,6 +30,14 @@ const actions = {
 
     setCurretApp: ({commit}, {app}) => {
         commit(types.APP_SET_CURRENT, app);
+    },
+
+    refreshView: ({dispatch, state}) => { 
+        switch(state.currentApp) {
+            case APP_TYPES.INBOX:
+                dispatch('getMails');
+                break;
+        }
     }
 
 };

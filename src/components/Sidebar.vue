@@ -8,7 +8,7 @@
                 <span>Email</span>
             </md-list-item>
 
-            <mail-folders v-if="currentApp === 'inbox'"></mail-folders>
+            <mail-folders v-if="currentApp === 'inbox'" v-on:selectMailFolder="selectMailFolder"></mail-folders>
 
             <md-divider></md-divider>
             
@@ -43,6 +43,12 @@
         methods: {
             toggle () {
                 this.$refs.sidenav.toggle();
+            },
+            selectMailFolder (id) {
+                this.$store.dispatch('setMailDisplayFolder', id);
+                this.$emit('setMailDisplayFolder', id);
+                this.$router.push('/inbox/' + encodeURIComponent(id));
+                this.toggle();
             }
         },
         computed: mapState({

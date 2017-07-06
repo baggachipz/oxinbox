@@ -24,7 +24,11 @@ module.exports = {
     autoOpenBrowser: true,
     proxyTable: {
       '/ajax/**': {
-        target: 'https://appsuite-dev.open-xchange.com',
+        target: 'https://appsuite.open-xchange.com',
+        changeOrigin: true
+      },
+      '/appsuite/api/**': {
+        target: 'https://appsuite.open-xchange.com',
         changeOrigin: true
       }
     },

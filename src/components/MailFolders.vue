@@ -1,27 +1,27 @@
 <template>
     
     <md-list class="md-dense">
-        <md-list-item>
-            <ox-folder-icon :folder="inbox"></ox-folder-icon>
-            <span>{{ inbox.title }}</span>
-        </md-list-item>
-        <md-list-item v-for="folder in inbox.sub_folders">
-            <ox-folder-icon :folder="folder"></ox-folder-icon>
-            <span>{{ folder.title }}</span>
-        </md-list-item>
+        <ox-mail-sub-folder :folder="inbox" :recursive="false" v-on:selectMailFolder="selectMailFolder"></ox-mail-sub-folder>
+        <ox-mail-sub-folder v-for="subfolder in inbox.sub_folders" :folder="subfolder" :key="subfolder"  v-on:selectMailFolder="selectMailFolder"></ox-mail-sub-folder>
     </md-list>  
     
 </template>
 
 <script>
 
-// import { mapState } from 'vuex';
+import Vue from 'vue';
+import MailSubFolders from './MailSubFolders';
+
+Vue.component('ox-mail-sub-folder', MailSubFolders);
 
 export default {
     id: 'mail-folders',
     methods: {
         getFolders () {
             this.$store.dispatch('getDefaultMailFolders');
+        },
+        selectMailFolder (id) {
+            this.$emit('selectMailFolder', id);
         }
     },
     computed: {
@@ -41,8 +41,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss" scoped>
-    
-    
-</style>

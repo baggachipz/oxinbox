@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueMaterial from 'vue-material';
-import I18n from 'vue-I18n';
+import VueI18n from 'vue-I18n';
 import tk from './components/tk';
 
 import store from './store';
@@ -24,18 +24,15 @@ Vue.material.registerTheme('ox', {
 });
 Vue.material.setCurrentTheme('ox')
 
-Vue.use(I18n);
+Vue.use(VueI18n);
 Vue.config.lang = 'en_US';
 Vue.config.fallbackLang = 'en_US';
 
-// set locales
-Object.keys(locales).forEach(function (lang) {
-  Vue.locale(lang, locales[lang])
-});
-
+const i18n = new VueI18n({locale: Vue.config.lang, messages: locales});
 
 new Vue({
   store,
   router,
+  i18n,
   render: (h) => h(App)
 }).$mount('#app');

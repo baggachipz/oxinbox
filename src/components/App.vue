@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <ox-topbar v-on:toggleLeftSidenav="toggleLeftSidenav" v-if="loggedIn"></ox-topbar>
+        <ox-topbar v-on:toggleLeftSidenav="toggleLeftSidenav" v-if="loggedIn" v-on:refresh="refreshView"></ox-topbar>
         <ox-sidebar ref="sidebar" v-if="loggedIn"></ox-sidebar>
         <router-view></router-view> 
     </div>
@@ -23,6 +23,9 @@
         methods: {
             toggleLeftSidenav() {
                this.$refs.sidebar.toggle();
+            },
+            refreshView() {
+                this.$store.dispatch('refreshView');
             }
         },
         computed: mapGetters(['loggedIn'])

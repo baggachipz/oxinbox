@@ -49,7 +49,7 @@ export default {
           this.resetError();          
 
           this.$store.dispatch('login', {username: this.username, password: this.password, rememberme: this.rememberme}).then(function () {
-              router.replace({name: 'inbox'});
+              router.replace({name: 'inbox_default'});
           }).catch(function (e) {
               store.commit(types.SESSION_LOGIN_FAILURE, e);
           });

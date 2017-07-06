@@ -25,8 +25,8 @@ export default {
         }
     },
     computed: mapState({
-        uid: state => state.session.user_id,
-        username: state => state.session.user_id
+        uid: state => state.session.user.id,
+        username: state => state.session.user.id
     })
 }
 </script>

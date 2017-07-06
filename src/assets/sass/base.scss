@@ -1,1 +1,5 @@
 @import './definitions.scss';
+
+.ox-mail-list-item .md-list-item-container {
+    flex-wrap: wrap;
+}
